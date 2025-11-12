@@ -1,0 +1,555 @@
+/**
+ * VibeCharts CSS - Styling for Advanced Charts
+ * Version 1.1.0
+ */
+
+/* Base Container Styles */
+.vibechart-container {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
+}
+
+.vibechart-container canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Loading Placeholder Styles */
+.vibechart-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.placeholder-shimmer {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.placeholder-title {
+  width: 200px;
+  height: 24px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.placeholder-chart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.placeholder-bar {
+  flex: 1;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  min-width: 40px;
+}
+
+.placeholder-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.placeholder-legend-item {
+  width: 120px;
+  height: 16px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Dark theme placeholder */
+.vibechart-dark .placeholder-title,
+.vibechart-dark .placeholder-bar,
+.vibechart-dark .placeholder-legend-item {
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%);
+  background-size: 200% 100%;
+}
+
+/* Lite theme placeholder */
+.vibechart-lite .placeholder-title,
+.vibechart-lite .placeholder-bar,
+.vibechart-lite .placeholder-legend-item {
+  background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%);
+  background-size: 200% 100%;
+}
+
+/* Theme Styles */
+.vibechart-lite {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #e0e0e0;
+}
+
+.vibechart-dark {
+  background-color: #1a1a2e;
+  color: #eeeeee;
+  border: 1px solid #2a2a3e;
+}
+
+.vibechart-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.vibechart-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* External Legend */
+.vibechart-legend-external {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* Style Variants */
+.vibechart-sharp {
+  border-radius: 0;
+}
+
+.vibechart-default {
+  border-radius: 8px;
+}
+
+.vibechart-soft {
+  border-radius: 18px;
+}
+
+.vibechart-rounded {
+  border-radius: 51px;
+}
+
+/* Chart Title */
+.vibechart-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+/* Legend Styles */
+.vibechart-legend {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vibechart-dark .vibechart-legend {
+  background: rgba(26, 26, 46, 0.9);
+  color: #eeeeee;
+}
+
+.vibechart-legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.vibechart-legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+/* Tooltip Styles */
+.vibechart-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.vibechart-tooltip.active {
+  opacity: 1;
+}
+
+.vibechart-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(0, 0, 0, 0.85);
+}
+
+/* Axis Labels */
+.vibechart-axis-label {
+  font-size: 12px;
+  fill: currentColor;
+  font-weight: 500;
+}
+
+.vibechart-axis-label.x-axis {
+  text-anchor: middle;
+}
+
+.vibechart-axis-label.y-axis {
+  text-anchor: end;
+}
+
+/* Grid Lines */
+.vibechart-grid-line {
+  stroke: currentColor;
+  stroke-opacity: 0.1;
+  stroke-dasharray: 5, 5;
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.vibechart-animated {
+  animation: fadeIn 0.6s ease;
+}
+
+/* Loading State */
+.vibechart-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.vibechart-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #667eea;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vibechart-container {
+    padding: 15px;
+  }
+  
+  .vibechart-title {
+    font-size: 18px;
+  }
+  
+  .vibechart-legend {
+    position: static;
+    margin-top: 15px;
+    font-size: 12px;
+  }
+  
+  .vibechart-legend-item {
+    font-size: 12px;
+  }
+  
+  .vibechart-legend-color {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vibechart-container {
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .vibechart-title {
+    font-size: 16px;
+  }
+  
+  .vibechart-legend {
+    padding: 10px;
+  }
+  
+  .vibechart-legend-item {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  .vibechart-legend-color {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+  }
+  
+  .vibechart-soft {
+    border-radius: 12px;
+  }
+  
+  .vibechart-rounded {
+    border-radius: 30px;
+  }
+}
+
+/* High DPI / Retina Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .vibechart-container canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Hover Effects */
+.vibechart-container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.vibechart-dark:hover {
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.vibechart-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+/* Interactive Elements */
+.vibechart-interactive {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vibechart-interactive:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.vibechart-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Data Point Styles */
+.vibechart-datapoint {
+  transition: all 0.2s ease;
+}
+
+.vibechart-datapoint:hover {
+  filter: brightness(1.2);
+  transform: scale(1.1);
+}
+
+/* Chart-Specific Styles */
+.vibechart-bar-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.vibechart-pie-slice {
+  transition: transform 0.2s ease;
+  transform-origin: center;
+}
+
+.vibechart-pie-slice:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient Definitions */
+.vibechart-gradient-purple {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.vibechart-gradient-blue {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.vibechart-gradient-green {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.vibechart-gradient-pink {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.vibechart-gradient-orange {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Accessibility */
+.vibechart-container:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 4px;
+}
+
+.vibechart-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Print Styles */
+@media print {
+  .vibechart-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .vibechart-tooltip {
+    display: none;
+  }
+  
+  .vibechart-glass {
+    background: white;
+    border: 1px solid #e0e0e0;
+  }
+}
+
+/* Custom Scrollbar for Legend */
+.vibechart-legend::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vibechart-legend::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.vibechart-legend::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 3px;
+}
+
+.vibechart-legend::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .vibechart-lite {
+    background-color: #1a1a2e;
+    color: #eeeeee;
+    border-color: #2a2a3e;
+  }
+  
+  .vibechart-legend {
+    background: rgba(26, 26, 46, 0.95);
+    color: #eeeeee;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .vibechart-container,
+  .vibechart-animated,
+  .vibechart-interactive,
+  .vibechart-pie-slice,
+  .vibechart-datapoint {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Focus Visible (Accessibility) */
+.vibechart-container:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: 4px;
+}
